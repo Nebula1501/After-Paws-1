@@ -11,6 +11,7 @@ export default class InteractionManager {
     // Don't allow interaction if owner is busy or if in distraction state
     if (this.scene.ownerState === 'walking' || this.scene.ownerState === 'cleaning') {
       console.log('[Interaction] Owner is busy, cannot interact');
+      this.showInteractionMessage('Owner is busy...');
       return;
     }
 
@@ -21,13 +22,45 @@ export default class InteractionManager {
       return;
     }
 
-    // TEMPORARY: Show a message that interaction is working
-    this.showInteractionMessage('E key works! Waiting for task positions...');
+    // Check all tasks to see if cat is near any interactive object
+    const tasks = this.scene.taskManager.getTasks();
+    let nearestTask = null;
+    let nearestDistance = Infinity;
 
-    // TODO: Once you provide object positions, we'll check actual distances
-    // For now, interaction system needs object coordinates from your collider map
+    for (const task of tasks) {
+      // Skip completed tasks
+      if (task.isComplete) continue;
 
-    console.log('[Interaction] Ready for task interaction - need object positions');
+      // Get the interaction object position from scene
+      const interactObj = this.scene.interactiveObjects[task.interactionObject];
+      if (!interactObj) {
+        console.log(`[Interaction] Warning: No position found for ${task.interactionObject}`);
+        continue;
+      }
+
+      // Calculate distance from cat to interaction object
+      const distance = Phaser.Math.Distance.Between(
+        cat.x, cat.y,
+        interactObj.x, interactObj.y
+      );
+
+      console.log(`[Interaction] Distance to ${task.interactionObject}: ${Math.round(distance)}px (radius: ${interactObj.radius})`);
+
+      // Check if within interaction radius
+      if (distance < interactObj.radius && distance < nearestDistance) {
+        nearestTask = task;
+        nearestDistance = distance;
+      }
+    }
+
+    // If we found a nearby task, trigger it
+    if (nearestTask) {
+      console.log(`[Interaction] Triggering task: ${nearestTask.name}`);
+      this.triggerTask(nearestTask, owner);
+    } else {
+      console.log('[Interaction] No interactive objects nearby');
+      this.showInteractionMessage('Nothing nearby to interact with...');
+    }
   }
 
   triggerTask(task, owner) {

@@ -222,6 +222,7 @@ export default class HouseScene extends Phaser.Scene {
 
     // Define all interactive object positions (from user coordinates - midpoints)
     this.interactiveObjects = {
+      bed: { x: 261, y: 244, radius: 100 }, // For making bed task
       fridge: { x: 1454, y: 765, radius: 80 },
       catBowl1: { x: 771, y: 116, radius: 60 },
       catBowl2: { x: 1676, y: 698, radius: 60 },
