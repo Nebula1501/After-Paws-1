@@ -104,50 +104,52 @@ export default class HouseScene extends Phaser.Scene {
     // Furniture colliders based on interactive object positions
     this.furnitureColliders = this.physics.add.staticGroup();
 
-    // Fridge collider (80px radius = ~160x160 box)
-    this.furnitureColliders.create(1454, 765, null).setSize(160, 160).setVisible(false).refreshBody();
+    // All colliders set to 500x500
 
-    // Books colliders (60px radius = ~120x120 box)
-    this.furnitureColliders.create(771, 319, null).setSize(120, 100).setVisible(false).refreshBody();
-    this.furnitureColliders.create(669, 159, null).setSize(120, 100).setVisible(false).refreshBody();
+    // Fridge collider
+    this.furnitureColliders.create(1454, 765, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Wardrobe collider (80px radius = ~160x160 box)
-    this.furnitureColliders.create(564, 29, null).setSize(160, 80).setVisible(false).refreshBody();
+    // Books colliders
+    this.furnitureColliders.create(771, 319, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(669, 159, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Chair colliders (60px radius = ~120x120 box)
-    this.furnitureColliders.create(1046, 283, null).setSize(80, 80).setVisible(false).refreshBody();
-    this.furnitureColliders.create(1351, 73, null).setSize(80, 80).setVisible(false).refreshBody();
-    this.furnitureColliders.create(2037, 104, null).setSize(80, 80).setVisible(false).refreshBody();
+    // Wardrobe collider
+    this.furnitureColliders.create(564, 29, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Table colliders (80px radius = ~160x160 box)
-    this.furnitureColliders.create(1351, 290, null).setSize(200, 140).setVisible(false).refreshBody();
-    this.furnitureColliders.create(1216, 1038, null).setSize(180, 120).setVisible(false).refreshBody(); // Coffee table with chips
+    // Chair colliders
+    this.furnitureColliders.create(1046, 283, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(1351, 73, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(2037, 104, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Boxes colliders (60px radius = ~120x120 box)
-    this.furnitureColliders.create(1857, 285, null).setSize(120, 120).setVisible(false).refreshBody();
-    this.furnitureColliders.create(1717, 195, null).setSize(120, 120).setVisible(false).refreshBody();
+    // Table colliders
+    this.furnitureColliders.create(1351, 290, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(1216, 1038, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Stove colliders (80px radius = ~160x160 box)
-    this.furnitureColliders.create(1216, 725, null).setSize(140, 140).setVisible(false).refreshBody();
-    this.furnitureColliders.create(846, 913, null).setSize(140, 140).setVisible(false).refreshBody();
+    // Boxes colliders
+    this.furnitureColliders.create(1857, 285, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(1717, 195, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Bathtub collider (80px radius = ~160x160 box)
-    this.furnitureColliders.create(496, 896, null).setSize(180, 120).setVisible(false).refreshBody();
+    // Stove colliders
+    this.furnitureColliders.create(1216, 725, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(846, 913, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Toilet collider (60px radius = ~120x120 box)
-    this.furnitureColliders.create(152, 705, null).setSize(100, 120).setVisible(false).refreshBody();
+    // Bathtub collider
+    this.furnitureColliders.create(496, 896, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Washing machine colliders (60px radius = ~120x120 box)
-    this.furnitureColliders.create(68, 1037, null).setSize(100, 100).setVisible(false).refreshBody();
-    this.furnitureColliders.create(68, 1262, null).setSize(100, 100).setVisible(false).refreshBody();
+    // Toilet collider
+    this.furnitureColliders.create(152, 705, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Cat bowl colliders (300x300 box)
-    this.furnitureColliders.create(771, 116, null).setSize(300, 300).setVisible(false).refreshBody();
-    this.furnitureColliders.create(1676, 698, null).setSize(300, 300).setVisible(false).refreshBody();
-    this.furnitureColliders.create(896, 1303, null).setSize(300, 300).setVisible(false).refreshBody();
+    // Washing machine colliders
+    this.furnitureColliders.create(68, 1037, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(68, 1262, null).setSize(500, 500).setVisible(false).refreshBody();
 
-    // Bed collider (large furniture piece)
-    this.furnitureColliders.create(261, 244, null).setSize(200, 180).setVisible(false).refreshBody();
+    // Cat bowl colliders
+    this.furnitureColliders.create(771, 116, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(1676, 698, null).setSize(500, 500).setVisible(false).refreshBody();
+    this.furnitureColliders.create(896, 1303, null).setSize(500, 500).setVisible(false).refreshBody();
+
+    // Bed collider
+    this.furnitureColliders.create(261, 244, null).setSize(500, 500).setVisible(false).refreshBody();
   }
 
   createProps() {
