@@ -29,13 +29,13 @@ export default class UIScene extends Phaser.Scene {
     this.overlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.7);
     this.taskboardContainer.add(this.overlay);
 
-    // Main taskboard background (sticky note style)
-    this.taskboardBg = this.add.rectangle(width / 2, height / 2, 700, 550, 0xffeb9e);
+    // Main taskboard background (sticky note style) - made taller to fit all 8 tasks
+    this.taskboardBg = this.add.rectangle(width / 2, height / 2, 650, 700, 0xffeb9e);
     this.taskboardBg.setStrokeStyle(4, 0x8b7355);
     this.taskboardContainer.add(this.taskboardBg);
 
     // Title
-    this.taskboardTitle = this.add.text(width / 2, height / 2 - 240, 'Things to do...', {
+    this.taskboardTitle = this.add.text(width / 2, height / 2 - 320, 'Things to do...', {
       font: 'bold 32px Arial',
       fill: '#333333',
       align: 'center'
@@ -44,18 +44,18 @@ export default class UIScene extends Phaser.Scene {
     this.taskboardContainer.add(this.taskboardTitle);
 
     // Paw print decoration (memory of cat)
-    this.pawPrint = this.add.text(width / 2 + 280, height / 2 - 220, '🐾', {
+    this.pawPrint = this.add.text(width / 2 + 250, height / 2 - 300, '🐾', {
       font: '24px Arial'
     });
     this.pawPrint.setAlpha(0.3);
     this.taskboardContainer.add(this.pawPrint);
 
-    // Task list container
-    this.taskListContainer = this.add.container(width / 2 - 300, height / 2 - 180);
+    // Task list container - centered properly inside sticky note
+    this.taskListContainer = this.add.container(width / 2 - 290, height / 2 - 260);
     this.taskboardContainer.add(this.taskListContainer);
 
     // Close instruction
-    this.closeText = this.add.text(width / 2, height / 2 + 260, 'Press ESC to close', {
+    this.closeText = this.add.text(width / 2, height / 2 + 330, 'Press ESC to close', {
       font: '18px Arial',
       fill: '#666666',
       align: 'center'
@@ -118,7 +118,7 @@ export default class UIScene extends Phaser.Scene {
 
     let yOffset = 0;
 
-    tasks.forEach((task, index) => {
+    tasks.forEach((task) => {
       // Determine color and checkbox based on state
       let noteColor = 0xffffaa; // Yellow = pending
       let checkbox = '☐';
@@ -133,8 +133,8 @@ export default class UIScene extends Phaser.Scene {
         checkbox = '▶';
       }
 
-      // Note background
-      const noteBg = this.add.rectangle(10, yOffset + 20, 580, 60, noteColor);
+      // Note background - smaller and contained
+      const noteBg = this.add.rectangle(285, yOffset + 30, 560, 70, noteColor);
       noteBg.setStrokeStyle(2, 0x8b7355);
       this.taskListContainer.add(noteBg);
 
@@ -144,24 +144,24 @@ export default class UIScene extends Phaser.Scene {
         taskText = `${checkbox}  ̶${task.name}̶`; // Strikethrough effect
       }
 
-      const text = this.add.text(20, yOffset + 10, taskText, {
-        font: task.isComplete ? 'italic 18px Arial' : 'bold 18px Arial',
+      const text = this.add.text(15, yOffset + 10, taskText, {
+        font: task.isComplete ? 'italic 16px Arial' : 'bold 16px Arial',
         fill: task.isComplete ? '#666666' : '#333333',
-        wordWrap: { width: 560 }
+        wordWrap: { width: 540 }
       });
       this.taskListContainer.add(text);
 
       // Task description (smaller)
-      const descText = this.add.text(20, yOffset + 35, task.description, {
-        font: '14px Arial',
+      const descText = this.add.text(15, yOffset + 35, task.description, {
+        font: '12px Arial',
         fill: '#555555',
-        wordWrap: { width: 560 }
+        wordWrap: { width: 540 }
       });
       this.taskListContainer.add(descText);
 
       this.taskTexts.push(noteBg, text, descText);
 
-      yOffset += 70;
+      yOffset += 75;
     });
   }
 
